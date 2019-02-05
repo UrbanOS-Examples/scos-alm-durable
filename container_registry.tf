@@ -145,6 +145,7 @@ module "aws_cost_exporter" {
   alm_account_id  = "${var.alm_account_id}"
   repository_name = "aws-cost-exporter"
 }
+
 module "kylo" {
   source          = "git@github.com:SmartColumbusOS/scos-tf-ecr?ref=1.0.1"
   alm_account_id  = "${var.alm_account_id}"
@@ -155,4 +156,28 @@ module "transform-rot13" {
   source          = "git@github.com:SmartColumbusOS/scos-tf-ecr?ref=1.0.1"
   alm_account_id  = "${var.alm_account_id}"
   repository_name = "transform-rot13"
+}
+
+module "hive" {
+  source          = "git@github.com:SmartColumbusOS/scos-tf-ecr?ref=1.0.1"
+  alm_account_id  = "${var.alm_account_id}"
+  repository_name = "hive"
+}
+
+module "metastore" {
+  source          = "git@github.com:SmartColumbusOS/scos-tf-ecr?ref=1.0.1"
+  alm_account_id  = "${var.alm_account_id}"
+  repository_name = "metastore"
+}
+
+module "presto" {
+  source          = "git@github.com:SmartColumbusOS/scos-tf-ecr?ref=1.0.1"
+  alm_account_id  = "${var.alm_account_id}"
+  repository_name = "presto"
+}
+
+module "spark" {
+  source          = "git@github.com:SmartColumbusOS/scos-tf-ecr?ref=1.0.1"
+  alm_account_id  = "${var.alm_account_id}"
+  repository_name = "spark"
 }
