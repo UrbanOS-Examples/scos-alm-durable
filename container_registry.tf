@@ -192,3 +192,9 @@ module "andi" {
   alm_account_id  = "${var.alm_account_id}"
   repository_name = "andi"
 }
+
+module "forklift" {
+  source          = "git@github.com:SmartColumbusOS/scos-tf-ecr?ref=1.0.1"
+  alm_account_id  = "${var.alm_account_id}"
+  repository_name = "forklift"
+}
