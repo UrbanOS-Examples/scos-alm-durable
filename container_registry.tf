@@ -193,6 +193,7 @@ module "voltron" {
   alm_account_id  = "${var.alm_account_id}"
   repository_name = "voltron"
 }
+
 module "andi" {
   source          = "git@github.com:SmartColumbusOS/scos-tf-ecr?ref=1.0.2"
   alm_account_id  = "${var.alm_account_id}"
@@ -221,4 +222,10 @@ module "streisand" {
   source          = "git@github.com:SmartColumbusOS/scos-tf-ecr?ref=1.0.2"
   alm_account_id  = "${var.alm_account_id}"
   repository_name = "streisand"
+}
+
+module "flair" {
+  source          = "git@github.com:SmartColumbusOS/scos-tf-ecr?ref=1.0.2"
+  alm_account_id  = "${var.alm_account_id}"
+  repository_name = "flair"
 }
