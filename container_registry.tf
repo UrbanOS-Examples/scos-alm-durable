@@ -182,6 +182,12 @@ module "spark" {
   repository_name = "spark"
 }
 
+module "minio" {
+  source          = "git@github.com:SmartColumbusOS/scos-tf-ecr?ref=1.0.2"
+  alm_account_id  = "${var.alm_account_id}"
+  repository_name = "minio"
+}
+
 module "reaper" {
   source          = "git@github.com:SmartColumbusOS/scos-tf-ecr?ref=1.0.2"
   alm_account_id  = "${var.alm_account_id}"
