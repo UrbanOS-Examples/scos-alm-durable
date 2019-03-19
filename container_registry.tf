@@ -182,11 +182,6 @@ module "spark" {
   repository_name = "spark"
 }
 
-module "minio" {
-  source          = "git@github.com:SmartColumbusOS/scos-tf-ecr?ref=1.0.2"
-  alm_account_id  = "${var.alm_account_id}"
-  repository_name = "minio"
-}
 
 module "reaper" {
   source          = "git@github.com:SmartColumbusOS/scos-tf-ecr?ref=1.0.2"
@@ -234,4 +229,28 @@ module "flair" {
   source          = "git@github.com:SmartColumbusOS/scos-tf-ecr?ref=1.0.2"
   alm_account_id  = "${var.alm_account_id}"
   repository_name = "flair"
+}
+
+module "presto-testo" {
+  source          = "git@github.com:SmartColumbusOS/scos-tf-ecr?ref=1.0.2"
+  alm_account_id  = "${var.alm_account_id}"
+  repository_name = "presto-testo"
+}
+
+module "metastore-testo" {
+  source          = "git@github.com:SmartColumbusOS/scos-tf-ecr?ref=1.0.2"
+  alm_account_id  = "${var.alm_account_id}"
+  repository_name = "metastore-testo"
+}
+
+module "minio-testo" {
+  source          = "git@github.com:SmartColumbusOS/scos-tf-ecr?ref=1.0.2"
+  alm_account_id  = "${var.alm_account_id}"
+  repository_name = "minio-testo"
+}
+
+module "postgres-testo" {
+  source          = "git@github.com:SmartColumbusOS/scos-tf-ecr?ref=1.0.2"
+  alm_account_id  = "${var.alm_account_id}"
+  repository_name = "postgres-testo"
 }
