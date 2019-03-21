@@ -254,3 +254,9 @@ module "postgres-testo" {
   alm_account_id  = "${var.alm_account_id}"
   repository_name = "postgres-testo"
 }
+
+module "dapper" {
+  source          = "git@github.com:SmartColumbusOS/scos-tf-ecr?ref=1.0.2"
+  alm_account_id  = "${var.alm_account_id}"
+  repository_name = "dapper"
+}
