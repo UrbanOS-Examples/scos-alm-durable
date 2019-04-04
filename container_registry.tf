@@ -260,3 +260,9 @@ module "dapper" {
   alm_account_id  = "${var.alm_account_id}"
   repository_name = "dapper"
 }
+
+module "data-generator" {
+  source          = "git@github.com:SmartColumbusOS/scos-tf-ecr?ref=1.0.2"
+  alm_account_id  = "${var.alm_account_id}"
+  repository_name = "data-generator"
+}
