@@ -38,16 +38,16 @@ module "leaflet_notebook_repository" {
   repository_name = "leaflet-notebook"
 }
 
-module "cota_streaming_consumer_repository" {
+module "discovery_streams_repository" {
   source          = "git@github.com:SmartColumbusOS/scos-tf-ecr?ref=1.0.2"
   alm_account_id  = "${var.alm_account_id}"
-  repository_name = "cota-streaming-consumer"
+  repository_name = "discovery-streams"
 }
 
-module "cota_consumer_smoke_test_repository" {
+module "discovery_streams_smoke_test_repository" {
   source          = "git@github.com:SmartColumbusOS/scos-tf-ecr?ref=1.0.2"
   alm_account_id  = "${var.alm_account_id}"
-  repository_name = "cota-consumer-smoke-test"
+  repository_name = "discovery-streams-smoke-test"
 }
 
 module "jenkins_worker_infrastructure_repository" {
