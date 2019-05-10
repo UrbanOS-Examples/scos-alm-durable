@@ -182,7 +182,6 @@ module "spark" {
   repository_name = "spark"
 }
 
-
 module "reaper" {
   source          = "git@github.com:SmartColumbusOS/scos-tf-ecr?ref=1.0.2"
   alm_account_id  = "${var.alm_account_id}"
@@ -265,4 +264,10 @@ module "data-generator" {
   source          = "git@github.com:SmartColumbusOS/scos-tf-ecr?ref=1.0.2"
   alm_account_id  = "${var.alm_account_id}"
   repository_name = "data-generator"
+}
+
+module "egon" {
+  source          = "git@github.com:SmartColumbusOS/scos-tf-ecr?ref=1.0.2"
+  alm_account_id  = "${var.alm_account_id}"
+  repository_name = "egon"
 }
