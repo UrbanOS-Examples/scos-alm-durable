@@ -277,3 +277,9 @@ module "joomla" {
   alm_account_id  = "${var.alm_account_id}"
   repository_name = "joomla"
 }
+
+module "doim-adapter" {
+  source          = "git@github.com:SmartColumbusOS/scos-tf-ecr?ref=1.0.3"
+  alm_account_id  = "${var.alm_account_id}"
+  repository_name = "doim-adapter"
+}
