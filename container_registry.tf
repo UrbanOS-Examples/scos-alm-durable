@@ -283,3 +283,9 @@ module "doim-adapter" {
   alm_account_id  = "${var.alm_account_id}"
   repository_name = "doim-adapter"
 }
+
+module "predictive-parking" {
+  source          = "git@github.com:SmartColumbusOS/scos-tf-ecr?ref=1.0.4"
+  alm_account_id  = "${var.alm_account_id}"
+  repository_name = "predictive-parking"
+}
