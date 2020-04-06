@@ -284,6 +284,11 @@ module "doim-adapter" {
   repository_name = "doim-adapter"
 }
 
+module "linkett-adapter" {
+  source          = "git@github.com:SmartColumbusOS/scos-tf-ecr?ref=1.0.5"
+  alm_account_id  = "${var.alm_account_id}"
+  repository_name = "linkett-adapter"
+}
 module "predictive-parking" {
   source          = "git@github.com:SmartColumbusOS/scos-tf-ecr?ref=1.0.5"
   alm_account_id  = "${var.alm_account_id}"
