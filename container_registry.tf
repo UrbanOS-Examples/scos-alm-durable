@@ -295,6 +295,12 @@ module "predictive-parking" {
   repository_name = "predictive-parking"
 }
 
+module "predictive-parking-etl" {
+  source          = "git@github.com:SmartColumbusOS/scos-tf-ecr?ref=1.0.6"
+  alm_account_id  = "${var.alm_account_id}"
+  repository_name = "predictive-parking-etl"
+}
+
 module "cmcc-data-publisher" {
   source          = "git@github.com:SmartColumbusOS/scos-tf-ecr?ref=1.0.6"
   alm_account_id  = "${var.alm_account_id}"
