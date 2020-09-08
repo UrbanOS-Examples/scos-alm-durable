@@ -306,3 +306,9 @@ module "cmcc-data-publisher" {
   alm_account_id  = "${var.alm_account_id}"
   repository_name = "cmcc-data-publisher"
 }
+
+module "cota-tvier-adapter" {
+  source          = "git@github.com:SmartColumbusOS/scos-tf-ecr?ref=1.0.6"
+  alm_account_id  = "${var.alm_account_id}"
+  repository_name = "cota-tvier-adapter"
+}
