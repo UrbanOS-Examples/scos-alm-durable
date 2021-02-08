@@ -8,7 +8,7 @@ resource "aws_s3_bucket" "smart_os_initial_state_backups" {
 }
 
 resource "aws_s3_bucket_policy" "smart_os_initial_state_backups" {
-  bucket = "${aws_s3_bucket.smart_os_initial_state_backups.id}"
+  bucket = aws_s3_bucket.smart_os_initial_state_backups.id
   policy =<<POLICY
 {
    "Version": "2012-10-17",
@@ -36,16 +36,16 @@ POLICY
 }
 
 resource "aws_s3_bucket" "scospy-repository" {
-  bucket = "${var.scospy_repo_name}"
+  bucket = var.scospy_repo_name
   acl    = "public-read"
   tags {
     Name        = "scospy-repository"
-    Environment = "${terraform.workspace}"
+    Environment = terraform.workspace
   }
 }
 
 resource "aws_s3_bucket_policy" "scospy-repository-policy" {
-  bucket = "${aws_s3_bucket.scospy-repository.id}"
+  bucket = aws_s3_bucket.scospy-repository.id
   policy =<<POLICY
 {
   "Version":"2012-10-17",
@@ -62,16 +62,16 @@ POLICY
 }
 
 resource "aws_s3_bucket" "helm-repository" {
-  bucket = "${var.helm_repo_name}"
+  bucket = var.helm_repo_name
   acl    = "public-read"
   tags {
     Name        = "helm-repository"
-    Environment = "${terraform.workspace}"
+    Environment = terraform.workspace
   }
 }
 
 resource "aws_s3_bucket_policy" "helm-repository-policy" {
-  bucket = "${aws_s3_bucket.helm-repository.id}"
+  bucket = aws_s3_bucket.helm-repository.id
   policy =<<POLICY
 {
   "Version":"2012-10-17",
@@ -88,16 +88,16 @@ POLICY
 }
 
 resource "aws_s3_bucket" "build_artifacts_repository" {
-  bucket = "${var.build_artifacts_repo_name}"
+  bucket = var.build_artifacts_repo_name
   acl    = "public-read"
   tags {
     Name        = "build-artifacts-repository"
-    Environment = "${terraform.workspace}"
+    Environment = terraform.workspace
   }
 }
 
 resource "aws_s3_bucket_policy" "build_artifacts_repository_policy" {
-  bucket = "${aws_s3_bucket.build_artifacts_repository.id}"
+  bucket = aws_s3_bucket.build_artifacts_repository.id
   policy =<<POLICY
 {
   "Version":"2012-10-17",
@@ -114,11 +114,11 @@ POLICY
 }
 
 resource "aws_s3_bucket" "jenkins_backup_repository" {
-  bucket = "${var.jenkins_backup_repo_name}"
+  bucket = var.jenkins_backup_repo_name
   acl    = "private"
   tags {
     Name        = "jenkins-backup-repository"
-    Environment = "${terraform.workspace}"
+    Environment = terraform.workspace
   }
   lifecycle_rule {
     id = "backup_retention"
@@ -135,7 +135,7 @@ resource "aws_s3_bucket" "scos-third-party-repository" {
 }
 
 resource "aws_s3_bucket_policy" "scos-third-party-repository-policy" {
-  bucket = "${aws_s3_bucket.scos-third-party-repository.id}"
+  bucket = aws_s3_bucket.scos-third-party-repository.id
   policy =<<POLICY
 {
   "Version":"2012-10-17",

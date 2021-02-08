@@ -1,15 +1,15 @@
 provider "aws" {
-  version = "1.39"
+  version = "3.27"
   alias   = "prod"
   region  = "us-east-1"
 
   assume_role {
-    role_arn = "${var.root_zone_role_arn}"
+    role_arn = var.root_zone_role_arn
   }
 }
 
 data "aws_route53_zone" "root_zone" {
-  provider = "aws.prod"
+  provider = aws.prod
   name = "${var.root_zone_name}"
 }
 
@@ -18,15 +18,15 @@ resource "aws_route53_zone" "internal" {
 }
 
 resource "aws_route53_record" "parent_ns_record" {
-    provider        = "aws.prod"
-    zone_id         = "${data.aws_route53_zone.root_zone.zone_id}"
-    name            = "${var.hosted_zone_name}"
+    provider        = aws.prod
+    zone_id         = data.aws_route53_zone.root_zone.zone_id
+    name            = var.hosted_zone_name
     ttl             = 300
     type            = "NS"
     records         = ["${aws_route53_zone.internal.name_servers}"]
 
     lifecycle {
-        ignore_changes = ["name", "allow_overwrite"]
+        ignore_changes = [name, allow_overwrite]
     }
 }
 
