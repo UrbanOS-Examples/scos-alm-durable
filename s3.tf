@@ -134,7 +134,7 @@ resource "aws_s3_bucket" "jenkins_backup_repository" {
 }
 
 resource "aws_s3_bucket" "scos-third-party-repository" {
-  bucket = "scos-third-party-repository"
+  bucket = var.third_party_repo_name
   acl    = "public-read"
 }
 
@@ -174,6 +174,11 @@ variable "scospy_repo_name" {
 variable "helm_repo_name" {
   default     = "scos-helm-repository"
   description = "Bucket name to archive scos helm charts"
+}
+
+variable "third_party_repo_name" {
+  default     = "scos-third-party-repository"
+  description = "Bucket to archive third party resources"
 }
 
 output "smart_os_initial_state_bucket_name" {

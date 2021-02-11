@@ -17,3 +17,5 @@ build_artifacts_repo_name = "sandbox-os-build-artifacts-repository"
 jenkins_backup_repo_name = "scos-sandbox-jenkins-backup"
 
 helm_repo_name = "scos-sandbox-helm-repository"
+
+third_party_repo_name = "scos-sandbox-third-party-repository"
