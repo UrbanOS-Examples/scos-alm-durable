@@ -15,5 +15,6 @@ variable "environment" {
 
 variable "region" {
   description = "The AWS region to deploy ALM durable stuff to"
-  default = "us-east-2"
+  default     = "us-east-2"
 }
+
