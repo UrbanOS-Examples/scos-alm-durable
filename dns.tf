@@ -1,5 +1,4 @@
 provider "aws" {
-  version = "1.39"
   alias   = "prod"
   region  = "us-east-1"
 
