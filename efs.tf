@@ -1,5 +1,5 @@
 module "jenkins_efs" {
-  source = "git@github.com:SmartColumbusOS/scos-tf-efs?ref=common-512"
+  source = "git@github.com:SmartColumbusOS/scos-tf-efs?ref=2.0.0"
 
   efs_name      = "jenkins"
   efs_mode      = "generalPurpose"
