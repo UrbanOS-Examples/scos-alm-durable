@@ -12,33 +12,23 @@ properties(
     ]
 )
 
-node('infrastructure') { ansiColor('xterm') { sshagent(["k8s-no-pass", "GitHub"]) { withCredentials([
+node('infrastructure') { ansiColor('xterm') { sshagent(["GitHub"]) { withCredentials([
     [
         $class: 'AmazonWebServicesCredentialsBinding',
         credentialsId: 'aws_jenkins_user',
         variable: 'AWS_ACCESS_KEY_ID'
-    ],
-    sshUserPrivateKey(
-        credentialsId: "k8s-no-pass",
-        keyFileVariable: 'keyfile'
-    )
+    ]
 ]) {
     String publicKey
 
     scos.doCheckoutStage()
-
-    stage('Setup SSH keys') {
-        publicKey = sh(returnStdout: true, script: "ssh-keygen -y -f ${keyfile}").trim()
-    }
 
     def terraform = scos.terraform('alm')
 
     stage("Plan ALM") {
         terraform.init()
 
-        def overrides = [:]
-
-        terraform.plan(terraform.defaultVarFile, overrides)
+        terraform.plan(terraform.defaultVarFile)
 
         archiveArtifacts artifacts: 'plan-*.txt', allowEmptyArchive: false
     }
