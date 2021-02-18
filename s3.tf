@@ -8,8 +8,8 @@ resource "aws_s3_bucket" "smart_os_initial_state_backups" {
 }
 
 resource "aws_s3_bucket_policy" "smart_os_initial_state_backups" {
-  bucket = "${aws_s3_bucket.smart_os_initial_state_backups.id}"
-  policy =<<POLICY
+  bucket = aws_s3_bucket.smart_os_initial_state_backups.id
+  policy = <<POLICY
 {
    "Version": "2012-10-17",
    "Statement": [
@@ -33,20 +33,21 @@ resource "aws_s3_bucket_policy" "smart_os_initial_state_backups" {
    ]
 }
 POLICY
+
 }
 
 resource "aws_s3_bucket" "scospy-repository" {
-  bucket = "${var.scospy_repo_name}"
+  bucket = var.scospy_repo_name
   acl    = "public-read"
-  tags {
+  tags = {
     Name        = "scospy-repository"
-    Environment = "${terraform.workspace}"
+    Environment = terraform.workspace
   }
 }
 
 resource "aws_s3_bucket_policy" "scospy-repository-policy" {
-  bucket = "${aws_s3_bucket.scospy-repository.id}"
-  policy =<<POLICY
+  bucket = aws_s3_bucket.scospy-repository.id
+  policy = <<POLICY
 {
   "Version":"2012-10-17",
   "Statement":[{
@@ -59,20 +60,21 @@ resource "aws_s3_bucket_policy" "scospy-repository-policy" {
   ]
 }
 POLICY
+
 }
 
 resource "aws_s3_bucket" "helm-repository" {
-  bucket = "${var.helm_repo_name}"
+  bucket = var.helm_repo_name
   acl    = "public-read"
-  tags {
+  tags = {
     Name        = "helm-repository"
-    Environment = "${terraform.workspace}"
+    Environment = terraform.workspace
   }
 }
 
 resource "aws_s3_bucket_policy" "helm-repository-policy" {
-  bucket = "${aws_s3_bucket.helm-repository.id}"
-  policy =<<POLICY
+  bucket = aws_s3_bucket.helm-repository.id
+  policy = <<POLICY
 {
   "Version":"2012-10-17",
   "Statement":[{
@@ -85,20 +87,21 @@ resource "aws_s3_bucket_policy" "helm-repository-policy" {
   ]
 }
 POLICY
+
 }
 
 resource "aws_s3_bucket" "build_artifacts_repository" {
-  bucket = "${var.build_artifacts_repo_name}"
+  bucket = var.build_artifacts_repo_name
   acl    = "public-read"
-  tags {
+  tags = {
     Name        = "build-artifacts-repository"
-    Environment = "${terraform.workspace}"
+    Environment = terraform.workspace
   }
 }
 
 resource "aws_s3_bucket_policy" "build_artifacts_repository_policy" {
-  bucket = "${aws_s3_bucket.build_artifacts_repository.id}"
-  policy =<<POLICY
+  bucket = aws_s3_bucket.build_artifacts_repository.id
+  policy = <<POLICY
 {
   "Version":"2012-10-17",
   "Statement":[{
@@ -111,17 +114,18 @@ resource "aws_s3_bucket_policy" "build_artifacts_repository_policy" {
   ]
 }
 POLICY
+
 }
 
 resource "aws_s3_bucket" "jenkins_backup_repository" {
-  bucket = "${var.jenkins_backup_repo_name}"
+  bucket = var.jenkins_backup_repo_name
   acl    = "private"
-  tags {
+  tags = {
     Name        = "jenkins-backup-repository"
-    Environment = "${terraform.workspace}"
+    Environment = terraform.workspace
   }
   lifecycle_rule {
-    id = "backup_retention"
+    id      = "backup_retention"
     enabled = true
     expiration {
       days = 14
@@ -130,13 +134,13 @@ resource "aws_s3_bucket" "jenkins_backup_repository" {
 }
 
 resource "aws_s3_bucket" "scos-third-party-repository" {
-  bucket = "scos-third-party-repository"
+  bucket = var.third_party_repo_name
   acl    = "public-read"
 }
 
 resource "aws_s3_bucket_policy" "scos-third-party-repository-policy" {
-  bucket = "${aws_s3_bucket.scos-third-party-repository.id}"
-  policy =<<POLICY
+  bucket = aws_s3_bucket.scos-third-party-repository.id
+  policy = <<POLICY
 {
   "Version":"2012-10-17",
   "Statement":[{
@@ -149,35 +153,43 @@ resource "aws_s3_bucket_policy" "scos-third-party-repository-policy" {
   ]
 }
 POLICY
+
 }
 
 variable "build_artifacts_repo_name" {
-  default = "os-build-artifacts-repository"
+  default     = "os-build-artifacts-repository"
   description = "Bucket name to archive build artifacts"
 }
 
 variable "jenkins_backup_repo_name" {
-  default = "scos-alm-jenkins-backups"
+  default     = "scos-alm-jenkins-backups"
   description = "Bucket name for the Jenkins backups"
 }
 
 variable "scospy_repo_name" {
-  default = "scospy-repository"
+  default     = "scospy-repository"
   description = "Bucket name to archive scospy build artifacts"
 }
+
 variable "helm_repo_name" {
-  default = "scos-helm-repository"
+  default     = "scos-helm-repository"
   description = "Bucket name to archive scos helm charts"
 }
 
+variable "third_party_repo_name" {
+  default     = "scos-third-party-repository"
+  description = "Bucket to archive third party resources"
+}
+
 output "smart_os_initial_state_bucket_name" {
-  value = "${aws_s3_bucket.smart_os_initial_state_backups.id}"
+  value = aws_s3_bucket.smart_os_initial_state_backups.id
 }
 
 output "smart_os_initial_state_bucket_region" {
-  value = "${aws_s3_bucket.smart_os_initial_state_backups.region}"
+  value = aws_s3_bucket.smart_os_initial_state_backups.region
 }
 
 output "smart_os_initial_state_bucket_arn" {
-  value= "${aws_s3_bucket.smart_os_initial_state_backups.arn}"
+  value = aws_s3_bucket.smart_os_initial_state_backups.arn
 }
+

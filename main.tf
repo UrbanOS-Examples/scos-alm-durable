@@ -1,6 +1,4 @@
 terraform {
-  required_version = "= 0.11.11"
-
   backend "s3" {
     key     = "alm-durable"
     encrypt = true
@@ -17,5 +15,6 @@ variable "environment" {
 
 variable "region" {
   description = "The AWS region to deploy ALM durable stuff to"
-  default = "us-east-2"
+  default     = "us-east-2"
 }
+
