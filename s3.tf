@@ -133,6 +133,16 @@ resource "aws_s3_bucket" "jenkins_backup_repository" {
   }
 }
 
+resource "aws_s3_bucket" "ldap_backup_repository" {
+  bucket = var.ldap_backup_repo_name
+  acl    = "private"
+  tags = {
+    Name        = "ldap backup repository"
+    Description = "This is not an automated process"
+    Environment = terraform.workspace
+  }
+}
+
 resource "aws_s3_bucket" "scos-third-party-repository" {
   bucket = var.third_party_repo_name
   acl    = "public-read"
@@ -164,6 +174,11 @@ variable "build_artifacts_repo_name" {
 variable "jenkins_backup_repo_name" {
   default     = "scos-alm-jenkins-backups"
   description = "Bucket name for the Jenkins backups"
+}
+
+variable "ldap_backup_repo_name" {
+  default     = "scos-alm-ldap-backups"
+  description = "Bucket name for the Free IPA backups"
 }
 
 variable "scospy_repo_name" {
